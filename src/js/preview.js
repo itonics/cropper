@@ -1,3 +1,23 @@
+    resetPreviewDimensions: function (previews) {
+      this.$preview.each(function () {
+        var $this = $(this);
+        var preview = previews.find(function (preview) {
+          return preview.id === $this.attr('id');
+        });
+
+        // reset
+        if (preview) {
+          $this.data(DATA_PREVIEW, {
+            width: preview.width,
+            height: preview.height,
+            html: $this.html()
+          });
+        }
+      });
+
+      this.preview();
+    },
+
     initPreview: function () {
       var crossOrigin = getCrossOrigin(this.crossOrigin);
       var url = crossOrigin ? this.crossOriginUrl : this.url;
